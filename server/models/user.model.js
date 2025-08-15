@@ -20,7 +20,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minLenght: 6
+        minLength: 6,
+        select: false
     },
     followers: [
         {
@@ -40,7 +41,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    profileImgId: {
+        type: String,
+        default: ''
+    },
     coverPic: {
+        type: String,
+        default: ''
+    },
+    coverPicId: {
         type: String,
         default: ''
     },
@@ -48,13 +57,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    link:{
+    link: {
         type: String,
         default: ''
     }
 }, {
     timestamps: true
-})
+});
 
 const User = mongoose.model('User', userSchema)
 

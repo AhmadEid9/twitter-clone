@@ -13,7 +13,7 @@ const login = async (req, res) => {
 
         const user = await User.findOne({
             $or: [{ username: identifier }, { email: identifier }]
-        });
+        }).select("+password");
 
         if (!user) {
             return res.status(401).json({ error: 'Invalid Username or Email' });
@@ -119,7 +119,18 @@ const signup = async (req, res) => {
     }
 }
 
+const getMe = async (req, res) => {
+    try {
+        const user = req.user;
+        res.status(200).json({data: user});
+    } catch (error) {
+        logger("error", error.message);
+        res.status(500).json({ error: 'Internal server error', description: error.message });
+    }
+}
+
 export {
     login,
-    signup
+    signup,
+    getMe
 }
