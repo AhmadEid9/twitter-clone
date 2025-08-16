@@ -4,6 +4,8 @@ import cors from 'cors'
 
 import authRoutes from './routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
+import postRoutes from './routes/post.routes.js'
+
 import connectDB from './db/connectDB.js'
 import requestTracker from './utils/requestTracker.js'
 
@@ -19,6 +21,7 @@ app.use(requestTracker)
 
 app.use('/api/auth', authRoutes)
 app.use('/api/user', userRoutes)
+app.use('/api/post', postRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`)
